@@ -19,7 +19,7 @@ services:
     tty: true
 
   mysql:
-    image: 'mysql:5.7.27'
+    image: 'mysql:5.7.16'
     environment:
       MYSQL_USERNAME: root
       MYSQL_ROOT_PASSWORD: password

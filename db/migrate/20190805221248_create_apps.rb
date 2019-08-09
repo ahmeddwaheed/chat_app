@@ -5,6 +5,7 @@ class CreateApps < ActiveRecord::Migration[5.1]
       t.string :name
       t.integer :chats_count, default: 0
       t.timestamps
+      t.index :token, unique: true
     end
   end
 end

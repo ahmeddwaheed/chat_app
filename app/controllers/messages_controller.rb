@@ -13,16 +13,30 @@ class MessagesController < ApplicationController
 
   def create
     message_number = NumberGenerator.message_number(@chat.number)
-    message = Message.new(chat_id: @chat.id, number: message_number)
-    MessagesCounterWorker.perform_async(@chat.id) if message.save!
+    message = Message.new(chat_id: @chat.id, number: message_number, body: params[:body])
+    after_creation_actions if message.save!
     json_response(message, :created)
   end
 
+  def search
+    messages = Message.search(params[:query])
+    json_response(messages.results)
+  end
+  
   def destroy
     @message.destroy
   end
+  
+  def after_creation_actions
+    MessagesCounterWorker.perform_async(@chat.id)
+    RenidexMessagesWorker.perform_async
+  end
 
   private
+
+  def message_params
+    params.require(:message).permit(:body)
+  end
 
   def app
     App.find_by(token: params[:application_id])

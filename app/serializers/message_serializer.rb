@@ -1,5 +1,5 @@
 class MessageSerializer < ActiveModel::Serializer
-  attributes :number, :chat_number, :app_token, :created_at, :updated_at
+  attributes :number, :body, :chat_number, :app_token, :created_at, :updated_at
 
   def chat_number
     chat.number

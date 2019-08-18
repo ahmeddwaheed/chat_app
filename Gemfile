@@ -17,6 +17,8 @@ gem 'redis'
 gem 'redis-namespace'
 gem 'sidekiq', '~> 5.2.7'
 gem 'redis-mutex'
+gem 'searchkick'
+gem 'elasticsearch-rails'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'

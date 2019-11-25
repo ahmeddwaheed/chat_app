@@ -14,10 +14,4 @@ jobs:
       with:
         ruby-version: 2.4.x
     - name: Build and test with Rake
-      run: |
-        sudo apt-get update
-        sudo apt-get install libmysqlclient-dev
-        sudo apt autoremove
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-        bundle exec rake
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)

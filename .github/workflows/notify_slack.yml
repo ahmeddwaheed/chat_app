@@ -1,0 +1,30 @@
+name: Pull request slack notification
+
+on: pull_request
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install dependencies
+      - run: |
+          sudo apt update & sudo apt install curl
+          echo curl --version
+      - name: Notify slack with hello world
+      - run: |
+         curl -X POST \
+          https://hooks.slack.com/services/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 \
+          -H 'Accept: */*' \
+          -H 'Accept-Encoding: gzip, deflate' \
+          -H 'Cache-Control: no-cache' \
+          -H 'Connection: keep-alive' \
+          -H 'Content-Length: 24' \
+          -H 'Content-Type: application/json' \
+          -H 'Host: hooks.slack.com' \
+          -H 'cache-control: no-cache' \
+          -d '{
+            "text": "Hello World"
+          }'
+  

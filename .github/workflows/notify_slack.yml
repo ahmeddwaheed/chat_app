@@ -9,6 +9,11 @@ jobs:
 
     steps:
       - name: Install dependencies
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: '# Message with markdown.\nThis is the message that will be displayed on users' first issue.'
+          pr-message: 'Message that will be displayed on users' first pr. Look, a `code block` for markdown.'
       - run: |
           sudo apt update & sudo apt install curl
           echo curl --version

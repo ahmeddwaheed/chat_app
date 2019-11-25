@@ -2,7 +2,7 @@ class AppsController < ApplicationController
   before_action :find_app, only: [:show, :update, :destroy]
 
   def index
-    apps = App.all
+    apps = App.all.limit(5)
     json_response(apps)
   end
 
